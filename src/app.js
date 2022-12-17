@@ -2,10 +2,9 @@ import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import 'dotenv/config';
-
-//router
 import Router from './api/routes/router.js'
 
+import {initialize} from './database/sql/sequelize/database.connector.sequelize.js'
 
 //app
 const app = express();
@@ -16,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
 app.use(helmet());
+
+// initialize database
+ initialize();
 
 
 app.get('/', (req, res) => res.send('API IS WORKING'));
