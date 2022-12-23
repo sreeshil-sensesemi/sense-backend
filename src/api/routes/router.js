@@ -1,19 +1,47 @@
 import express from 'express';
-
-//import routes
-import enterpriseRoutes from './enterprise/enterprise.routes.js' 
-import doctorRoutes from './doctor/doctor.routes.js'
-import patientRoutes from './patient/patient.routes.js'
-
-const router = express.Router();
-
-//routes middlewares
-router.use('/hospitals', enterpriseRoutes);
-router.use('/doctors', doctorRoutes);
-router.use('/patients', patientRoutes);
+import { register as registerEnterpriseRoutes } from './enterprise/enterprise.routes.js'
+import { register as registerDoctorRoutes } from './doctor/doctor.routes.js';
+import { register as registerPatientRoutes } from './patient/patient.routes.js';
 
 
 
 
+export const routerInit = async (app) => {
+    return new Promise((resolve, reject) => {
 
-export default router
+        try {
+
+            //Handling the base route
+            app.get('/api/v1/', (req, res) => {
+                res.send({
+                    message: `SenseService API [Version ${process.env.API_VERSION}]`,
+                });
+            });
+
+            //Initializing the routes
+            registerEnterpriseRoutes(app);
+            registerDoctorRoutes(app);
+            registerPatientRoutes(app);
+
+
+            //Handling the wrong route
+            app.all('*', (req, res) => {
+                res.status(404).json({
+                    status: false,
+                    message: `Can't find ${req.originalUrl} on this server!`,
+                });
+            });
+
+            console.log("Routes Initialized");
+            resolve(true)
+
+        } catch (error) {
+            console.log(error);
+            reject(error)
+        }
+    });
+
+}
+
+
+ 

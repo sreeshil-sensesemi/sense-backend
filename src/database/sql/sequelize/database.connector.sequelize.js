@@ -1,15 +1,14 @@
-import dbConfig from './database.config.js';
+import { dbConfig, sequelize} from './database.config.js';
 import mysql from 'mysql2/promise'
 import { Sequelize, DataTypes } from 'sequelize';
+import { Enterprise } from './models/enterprise/enterprise.model.js'
+//import { doctor } from './models/doctor/doctor.model.js';
+//import { patient } from './models/patient/patient.model.js';
 
-import { enterprise } from './models/enterprise/enterprise.model.js'
-import { doctor } from './models/doctor/doctor.model.js';
-import { patient } from './models/patient/patient.model.js';
-
-export const db = {};
+ var db = {};
 
 
-//initialize();
+//initialize db;
 export const initialize = async () => {
 
     try {
@@ -20,26 +19,7 @@ export const initialize = async () => {
         const connection = await mysql.createConnection({ host, port, user, password });
         await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
-
-
-        // connect to db
-        const sequelize = new Sequelize(
-            dbConfig.DB,
-            dbConfig.USER,
-            dbConfig.PASSWORD, {
-            host: dbConfig.HOST,
-            dialect: dbConfig.dialect,
-            operatorsAliases: false,
-
-
-            pool: {
-                max: dbConfig.pool.max,
-                min: dbConfig.pool.min,
-                acquire: dbConfig.pool.acquire,
-                idle: dbConfig.pool.idle
-            }
-        }
-        )
+      
 
         //authenticate db
         await sequelize.authenticate()
@@ -52,26 +32,26 @@ export const initialize = async () => {
 
 
 
-        db.Sequelize = Sequelize;
-        db.sequelize = sequelize;
+         db.Sequelize = Sequelize;
+         db.sequelize = sequelize;
 
-        // init models and add them to the exported db object
-        db.hospitals = enterprise(sequelize, DataTypes)
-        db.doctors = doctor(sequelize, DataTypes)
-        db.patients = patient(sequelize, DataTypes)
+        // // init models and add them to the exported db object
+        //  db.enterprises = enterprise(sequelize, DataTypes)
+        Enterprise.sync({ alter: true })
+        
 
 
         // sync all models with database
-        // await sequelize.sync().then(() => { console.log("re-sync done") });
-        await db.sequelize.sync({ alter: true })
+        await sequelize.sync({ alter: true })
             .then(() => {
                 console.log('re-sync done');
             })
 
-        console.log('connected to database');
+        console.log('Database Initialized, connected to DB');
 
     } catch (error) {
         console.log(error);
     }
 }
 
+export {db} 
