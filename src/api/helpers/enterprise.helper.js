@@ -8,7 +8,7 @@ export const generateEnterpriseID = async () => {
     // check if generated ID is unique
     const isIDExist = await enterpriseService.getByEnterpriseID(SenseHospitalIDStr)
 
-    if (isIDExist) {
+    if (isIDExist || SenseHospitalIDStr.length != 5) {
         generateEnterpriseID();
     }
 

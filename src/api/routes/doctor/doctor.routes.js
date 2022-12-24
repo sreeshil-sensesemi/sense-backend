@@ -1,5 +1,5 @@
 import express from 'express'
-
+import { create } from '../../controllers/doctor/doctor.controller.js';
 
 
 

@@ -9,7 +9,7 @@ export const Enterprise = sequelize.define("enterprise", {
         allowNull: true,
     },
     SenseHospitalID: {
-        type: DataTypes.STRING(5),
+        type: DataTypes.STRING,
         allowNull: false,
        // unique: true
     },

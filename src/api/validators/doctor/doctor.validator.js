@@ -5,6 +5,7 @@ import Joi from "joi";
 export const registerValidator = (data) => {
 
     const registerSchema = Joi.object({
+        sensehospitalID: Joi.string().required().length(5).label("Sense Hospital ID"),
         registrationno: Joi.number().required().label("Registration No"),
         firstname: Joi.string().required().label("First Name"),
         lastname: Joi.string().required().label("Last Name"),
