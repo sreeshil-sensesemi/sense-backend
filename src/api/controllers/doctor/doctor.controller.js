@@ -43,3 +43,30 @@ export const create = async (request, response) => {
         console.log(error);
     }
 }
+
+
+// get doctor by doctor id
+export const getByDoctorID = async (request, response) => {
+    try {
+        const doctorID = request.params.doctorID;
+
+        const doctor = await doctorService.getByDoctorID(doctorID);
+        response.send(doctor);
+        
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({ message: "server error"})
+    }
+}
+
+
+// update doctor by doctor id
+export const updateByDoctorID = async (request, response) => {
+    try {
+        
+        
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({message: "server error"});
+    }
+}

@@ -1,5 +1,3 @@
-
-
 import * as enterpriseRepo from '../../database/sql/sequelize/repositories/enterprise/enterprise.repo.js'
 
 
@@ -26,4 +24,17 @@ export const getByEnterpriseID = async (enterpriseID) => {
 
     const enterprise = await enterpriseRepo.getByEnterpriseID(enterpriseID);
     return enterprise;
+}
+
+// update enterprise by enterpriseID 
+export const updateByEnterpriseID = async (enterpriseID, data) => {
+    
+    const enterprise = await enterpriseRepo.updateByEnterpriseID(enterpriseID, data);
+    return enterprise;
+}
+
+//delete enterprise by enterpriseID
+export const deleteByEnterpriseID = async (enterpriseID) => {
+   
+    await enterpriseRepo.deleteByEnterpriseID(enterpriseID)
 }

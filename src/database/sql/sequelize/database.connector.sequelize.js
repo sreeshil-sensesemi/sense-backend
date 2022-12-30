@@ -16,7 +16,6 @@ export const initialize = async () => {
 
         // create db if it doesn't already exist
         const { HOST: host, PORT: port, USER: user, PASSWORD: password, DB: database } = dbConfig;
-        console.log(host, user, password, database," === dbconfig");
         const connection = await mysql.createConnection({ host, port, user, password });
         await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
@@ -36,8 +35,7 @@ export const initialize = async () => {
          db.Sequelize = Sequelize;
          db.sequelize = sequelize;
 
-        // // init models and add them to the exported db object
-        //  db.enterprises = enterprise(sequelize, DataTypes)
+        // init models and add them to the exported db object
         Enterprise.sync({alter: true });
         Doctor.sync({alter: true });
         Patient.sync({alter: true });
@@ -53,7 +51,7 @@ export const initialize = async () => {
         console.log('Database Initialized, connected to DB');
 
     } catch (error) {
-        console.log(error,"ErrO");
+        console.log(error);
     }
 }
 

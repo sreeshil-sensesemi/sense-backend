@@ -19,3 +19,10 @@ export const create = async (doctorData) => {
     const doctor = await doctorRepo.create(doctorData);
     return doctor;
 }
+
+//update doctor
+export const updateByDoctorID = async (doctorID, data) => {
+
+    const doctor = await doctorRepo.updateByDoctorID(doctorID, data);
+    return doctor;
+}

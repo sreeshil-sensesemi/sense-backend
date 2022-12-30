@@ -1,7 +1,6 @@
 import express from 'express'
-import { create, loginWithMobile, otpVerify } from '../../controllers/enterprise/enterprise.controller.js';
-
-
+import * as controller from '../../controllers/enterprise/enterprise.controller.js'
+import { upload } from '../../helpers/multer.config.js';
 
 
 export const register = async (app) => {
@@ -10,10 +9,14 @@ export const register = async (app) => {
     const router = express.Router();
 
 
-    router.post('/', create);
-    router.post('/login', loginWithMobile);
-    router.post('/verify-otp', otpVerify);
+    router.post('/', upload.single('logo'), controller.create);
+    router.post('/login', controller.loginWithMobile);
+    router.post('/verify-otp', controller.otpVerify);
 
+    router.get('/resend-otp', controller.resendOtp);
+    router.get('/:enterpriseID', controller.getByEnterpriseID);
+    router.put('/:enterpriseID', controller.updateByEnterpriseID);
+    router.delete('/:enterpriseID', controller.deleteByEnterpriseID);
 
 
     router.get('/test', async (req, res) => res.send("success api get"))

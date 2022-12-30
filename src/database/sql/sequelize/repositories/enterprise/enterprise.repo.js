@@ -37,3 +37,23 @@ export const getByEnterpriseID = async (enterpriseID) => {
         console.log(error);
     }
 }
+
+// update enterprise by enterprise ID 
+export const updateByEnterpriseID = async (enterpriseID, data) => {
+    try {
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// delete enterprise by enterprise ID
+export const deleteByEnterpriseID = async (enterpriseID) => {
+    try {
+        
+        await Enterprise.destroy({ where: { SenseHospitalID: enterpriseID }})
+        
+    } catch (error) {
+        console.log(error);
+    }
+}

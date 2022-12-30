@@ -34,7 +34,7 @@ export const create = async (request, response) => {
 
 
 //get manual vitals by patient id
-export const getManualVitalsById = async (request, response) => {
+export const getManualVitalsByPatientId = async (request, response) => {
     try {
         const sensepatientID = request.params.sensepatientid;
         
@@ -43,5 +43,27 @@ export const getManualVitalsById = async (request, response) => {
         
     } catch (error) {
         console.log(error);
+    }
+}
+
+// update manual vital by patient id
+export const updateManualVitalByPatientId = async (request, response) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+
+// delete manual vital by patient id
+export const deleteManualVitalByPatientId = async (request, response) => {
+    try {
+        const sensepatientID = request.params.sensepatientid;
+
+        await manualVitalService.deleteManualVitalByPatientId(sensepatientID);
+
+    } catch (error) {
+        
     }
 }

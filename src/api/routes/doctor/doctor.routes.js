@@ -1,5 +1,5 @@
 import express from 'express'
-import { create } from '../../controllers/doctor/doctor.controller.js';
+import * as controller from '../../controllers/doctor/doctor.controller.js';
 
 
 
@@ -11,7 +11,11 @@ export const register = async (app) => {
     const router = express.Router();
 
 
-    router.post('/', create);
+    router.post('/', controller.create);
+    router.get('/:doctorID', controller.getByDoctorID);
+    router.put('/:doctorID', controller.updateByDoctorID);
+    //router.delete('/:doctorID', controller.deleteByDoctorID);
+    
     
     router.get('/test', async (req, res) => res.send("success Doctors api get"))
    

@@ -29,3 +29,23 @@ export const create = async (doctorData) => {
     }
 }
 
+
+// update doctor by doctor id
+export const updateByDoctorID = async (doctorID, data) => {
+    try {
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// delete doctor by doctor id
+export const deleteByDoctorID = async (doctorID, senseHospitalID) => {
+    try {
+        
+        await Doctor.destroy({ where: { SenseDoctorID: doctorID, SenseHospitalID: senseHospitalID } });
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
