@@ -1,6 +1,4 @@
-import * as manualVitalService from '../../services/manual.vital.service.js';
-
-
+import * as manualVitalService from '../../../services/vital/manual.vital.service.js'
 
 
 

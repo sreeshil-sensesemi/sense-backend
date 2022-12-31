@@ -2,7 +2,7 @@ import express from 'express';
 import { register as registerEnterpriseRoutes } from './enterprise/enterprise.routes.js'
 import { register as registerDoctorRoutes } from './doctor/doctor.routes.js';
 import { register as registerPatientRoutes } from './patient/patient.routes.js';
-import { register as registerManualVitalRoutes } from './manual/manual.vital.routes.js';
+import { register as registerManualVitalRoutes } from './vital/manual.vital.routes.js';
 
 
 

@@ -7,13 +7,10 @@ import { initialize } from './database/sql/sequelize/database.connector.sequeliz
 import { routerInit } from './api/routes/router.js'
 
 
-
 //app
 const app = express();
-var db;
 
 
-/////////////////////////////////////////////////
 const setupMiddlewares = async () => {
     return new Promise((resolve, reject) => {
 
@@ -77,85 +74,4 @@ export const start = async () => {
 
 
 
-
-
-
 export default app;
-////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const start = async () => {
-//     try {
-
-//         configMiddlewares()
-
-//         configRoutes()
-
-//         //start server
-//         await listen();
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-
-// }
-
-
-// function configMiddlewares() {
-//     app.use(express.json({ limit: '30mb', extended: true }));
-//     app.use(express.urlencoded({ limit: '30mb', extended: true }));
-//     app.use(cors());
-//     app.use(helmet());
-// }
-
-// function configRoutes() {
-//     app.get('/', (req, res) => res.send('API IS WORKING'));
-//     app.use('/api/v1', Routes);
-
-//     app.all('*', (req, res) => {
-//     res.status(404).json({
-//         status: false,
-//         message: `Can't find ${req.originalUrl} on this server!`,
-//     });
-// });
-// }
-
-// // app.all('*', (req, res) => {
-// //     res.status(404).json({
-// //         status: false,
-// //         message: `Can't find ${req.originalUrl} on this server!`,
-// //     });
-// // });
-
-
-// export default app;

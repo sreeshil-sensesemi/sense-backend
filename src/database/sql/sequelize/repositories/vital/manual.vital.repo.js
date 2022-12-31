@@ -1,4 +1,4 @@
-import { ManualVital } from "../models/manual.vital.model.js";
+import { ManualVital } from "../../models/manual.vital.model.js";
 
 
 

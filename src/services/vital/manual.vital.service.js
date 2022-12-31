@@ -1,4 +1,4 @@
-import * as manualVitalRepo from '../database/sql/sequelize/repositories/manual.vital.repo.js';
+import * as manualVitalRepo from '../../database/sql/sequelize/repositories/vital/manual.vital.repo.js';
 
 
 

@@ -1,5 +1,5 @@
 import express from 'express'
-import * as controller from '../../controllers/manual.vital.controller.js';
+import * as controller from '../../controllers/vital/manual.vital.controller.js';
 
 
 export const register = async (app) => {

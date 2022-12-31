@@ -106,7 +106,7 @@ export const create = async (request, response) => {
                 verify: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 400, error)
+            handleFailure(request, response, 'Input validation erorr', 200, error)
         }
 
         const {

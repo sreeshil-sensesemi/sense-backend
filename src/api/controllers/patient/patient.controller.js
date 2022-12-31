@@ -15,7 +15,7 @@ export const create = async (request, response) => {
                 verify: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 400, error)
+            handleFailure(request, response, 'Input validation erorr', 200, error)
         }
 
         //generate patient ID 
@@ -39,7 +39,7 @@ export const create = async (request, response) => {
         }
 
         const patient = await patientService.create(patientData);
-        response.send(patient);
+        response.status(200).json({registered: true, message: "patient is registered true", data: patient})
 
 
     } catch (error) {

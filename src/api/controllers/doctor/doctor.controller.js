@@ -13,7 +13,7 @@ export const create = async (request, response) => {
                 verify: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 400, error)
+            handleFailure(request, response, 'Input validation erorr', 200, error)
         }
 
 
@@ -37,10 +37,11 @@ export const create = async (request, response) => {
         }
 
         const doctor = await doctorService.create(doctorData);
-        response.send(doctor);
+        response.status(200).json({registered: true, data: doctor, message: "Doctor registered successfully"});
 
     } catch (error) {
         console.log(error);
+        response.status(500).json({registered: false, message: "server error"})
     }
 }
 
