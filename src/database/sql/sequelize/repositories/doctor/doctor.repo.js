@@ -5,7 +5,7 @@ import { Doctor } from "../../models/doctor/doctor.model.js";
 
 
 
-// get enterprise by enterprise ID
+// get doctor 
 export const getByDoctorID = async (doctorID, senseHospitalID) => {
     try {
       
@@ -44,9 +44,11 @@ export const deleteByDoctorID = async (doctorID, senseHospitalID) => {
     try {
         
         await Doctor.destroy({ where: { SenseDoctorID: doctorID, SenseHospitalID: senseHospitalID } });
-        
+        return 'deleted successfully'
+
     } catch (error) {
         console.log(error);
+        return 'not deleted, error occured'
     }
 }
 
@@ -62,3 +64,19 @@ export const getAllDoctorsByEnterpriseID = async (enterpriseID) => {
         return "not found"
     }
 }
+
+
+//search doctor
+export const searchDoctor = async (query) => {
+    try {
+
+        const doctor = await Doctor.findAll({ where : { FirstName: query }})
+        return doctor
+        
+    } catch (error) {
+        console.log(error);
+        return 'not found'
+    }
+}
+
+

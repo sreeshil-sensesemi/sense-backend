@@ -5,15 +5,17 @@ import { registerValidator, verifyOtpValidator, loginValidator } from '../../val
 import { handleFailure, handleSuccess, handleError } from '../../../common/response.handler.js'
 import { sendOtp, verifyOtp } from '../../helpers/otp.config.js';
 import { generateEnterpriseID } from '../../helpers/enterprise.helper.js';
-import { getObject, storageConfig } from '../../../modules/storage/aws.s3.storage.service.js';
+import { uploadObject } from '../../../modules/storage/aws.s3.storage.service.js'; 
 import crypto from 'crypto';
 import sharp from 'sharp'
+
 
 
 
 // login with mobile number
 export const loginWithMobile = async (request, response) => {
     try {
+       
 
         const validator = loginValidator(request.body);
 
@@ -23,7 +25,7 @@ export const loginWithMobile = async (request, response) => {
                 otpsent: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 200, error)
+            return handleFailure(request, response, 'Input validation erorr', 200, error)
         }
 
         const { mobilenumber: MobileNumber } = request.body;
@@ -36,7 +38,7 @@ export const loginWithMobile = async (request, response) => {
 
     } catch (error) {
         console.log(error);
-        return response.status(500).json({ verified: false, error: true, message: "server error" })
+        response.status(500).json({ verified: false, error: true, message: "server error" })
     }
 }
 
@@ -44,14 +46,14 @@ export const loginWithMobile = async (request, response) => {
 export const otpVerify = async (request, response) => {
     try {
         const validator = verifyOtpValidator(request.body);
-    
+
         //return if error occured
         if (validator.error) {
             const error = {
                 verify: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 400, error)
+            return handleFailure(request, response, 'Input validation erorr', 400, error)
         }
 
         const { otp, mobilenumber } = request.body;
@@ -69,29 +71,21 @@ export const otpVerify = async (request, response) => {
 
             const enterpriseData = await enterpriseService.getByMobileNumber(mobilenumber);
 
-            if (enterpriseData) {
-
-                if (enterpriseData.Logo) {
-                    const getObjUrl = await getObject(enterpriseData.Logo);
-                    enterpriseData.Logo = getObjUrl;
-                }
-
-                return response.status(200).json({ verified: true, isExist: true, error: false, data: enterpriseData, message: "OTP verification success, Logged In" })
-            }
+            if (enterpriseData)  return response.status(200).json({ verified: true, isExist: true, error: false, data: enterpriseData, message: "OTP verification success, Logged In" })
 
 
             response.status(200).json({ verified: true, isExist: false, error: false, message: "OTP verification success , Not registerd : re-direct to register page" })
 
         } else {
             // return if otp verify failed (wrong otp)
-            return response.status(200).json({ verified: false, error: true, message: "OTP verification failed " })
+            response.status(200).json({ verified: false, error: true, message: "OTP verification failed " })
         }
 
 
 
     } catch (error) {
         console.log(error);
-        return response.status(500).json({ verified: false, error: true, message: "server error" })
+        response.status(500).json({ verified: false, error: true, message: "server error" })
     }
 }
 
@@ -99,7 +93,7 @@ export const otpVerify = async (request, response) => {
 // enterprise register
 export const create = async (request, response) => {
     try {
-
+        console.log(request.body);
         const validator = registerValidator(request.body);
 
         //return if error occured
@@ -108,7 +102,7 @@ export const create = async (request, response) => {
                 verify: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 200, error)
+            return handleFailure(request, response, 'Input validation erorr', 200, error)
         }
 
         const {
@@ -127,6 +121,7 @@ export const create = async (request, response) => {
         const Website = request.body.website ? request.body.website : null;
 
         let keyString = '';
+        let logo = '';
 
         if (request.file) {
 
@@ -136,7 +131,9 @@ export const create = async (request, response) => {
 
             const buffer = await sharp(request.file.buffer).resize({ height: 1024, width: 1024, fit: 'contain' }).jpeg({ quality: 100, chromaSubsampling: '4:4:4' }).withMetadata().toBuffer();
 
-            await storageConfig(buffer, keyString);
+           // await storageConfig(buffer, keyString);
+            let uploads = await uploadObject(buffer, keyString);
+            logo = uploads.Location;
 
         }
 
@@ -156,17 +153,16 @@ export const create = async (request, response) => {
             Address,
             Pin,
             Website,
-            Logo: keyString
+            Logo: logo,
+            LogoKey: keyString
         }
+
+
+
 
         const enterprise = await enterpriseService.create(registerData);
 
-        if (enterprise.Logo) {
-
-            const getObjUrl = await getObject(enterprise.Logo);
-            enterprise.Logo = getObjUrl;
-        }
-
+        console.log(enterprise);
         response.status(200).json({ registered: true, error: false, message: "Registered Successfully", data: enterprise });
 
     } catch (error) {
@@ -199,11 +195,6 @@ export const getByEnterpriseID = async (request, response) => {
 
         const enterprise = await enterpriseService.getByEnterpriseID(enterpriseID)
 
-        if (enterprise.Logo) {
-
-            const getObjUrl = await getObject(enterprise.Logo);
-            enterprise.Logo = getObjUrl;
-        }
         response.status(200).json({ data: enterprise });
 
 
@@ -245,8 +236,8 @@ export const getDoctors = async (request, response) => {
         const id = request.params.enterpriseID;
 
         const doctors = await doctorService.getAllDoctorsByEnterpriseID(id);
-        response.status(200).json({doctors});
-        
+        response.status(200).json({ doctors });
+
     } catch (error) {
         console.log(error);
     }
@@ -258,10 +249,10 @@ export const getPatients = async (request, response) => {
     try {
         const id = request.params.enterpriseID;
 
-        const patients  = await patientService.getAllPatientsByEnterpriseID(id);
-        response.status(200).json({patients});
+        const patients = await patientService.getAllPatientsByEnterpriseID(id);
+        response.status(200).json({ patients });
 
-        
+
     } catch (error) {
         console.log(error);
     }

@@ -33,3 +33,17 @@ export const getAllDoctorsByEnterpriseID = async (enterpriseID) => {
     const doctors = await doctorRepo.getAllDoctorsByEnterpriseID(enterpriseID);
     return doctors;
 }
+
+
+//search doctor
+export const searchDoctor = async (query) => {
+    const doctor = await doctorRepo.searchDoctor(query);
+    return doctor;
+}
+
+// delete doctor by doctor id
+export const deleteByDoctorID = async (doctorID) => {
+
+    const res = await doctorRepo.deleteByDoctorID(doctorID);
+    return res;
+}

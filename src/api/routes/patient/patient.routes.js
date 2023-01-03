@@ -9,6 +9,7 @@ export const register = async (app) => {
 
 
     router.post('/', create);
+    
    // router.get('/test', async (req, res) => res.send("success Patient api get"))
    
 

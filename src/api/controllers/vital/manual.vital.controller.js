@@ -23,10 +23,12 @@ export const create = async (request, response) => {
             Weight: request.body.weight,
         }
         const manualData = await manualVitalService.create(manualVitals);
-        response.send(manualData);
+       
+        response.status(200).json({message: "manual entry created successfully"})
         
     } catch (error) {
         console.log(error);
+        response.status(500).json({message: "server error"})
     }
 }
 
@@ -37,10 +39,12 @@ export const getManualVitalsByPatientId = async (request, response) => {
         const sensepatientID = request.params.sensepatientid;
         
         const manualVitals = await manualVitalService.getManualVitalsById(sensepatientID);
-        response.send(manualVitals);
+
+        response.status(200).json({data: manualVitals})
         
     } catch (error) {
         console.log(error);
+        response.status(500).json({message: "server error"})
     }
 }
 

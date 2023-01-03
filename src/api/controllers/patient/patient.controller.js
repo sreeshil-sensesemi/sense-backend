@@ -15,7 +15,7 @@ export const create = async (request, response) => {
                 verify: false,
                 message: validator.error.details[0].message.replace(/"/g, "")
             }
-            handleFailure(request, response, 'Input validation erorr', 200, error)
+            return handleFailure(request, response, 'Input validation erorr', 200, error)
         }
 
         //generate patient ID 
@@ -32,17 +32,23 @@ export const create = async (request, response) => {
             MobileNumber: request.body.mobile,
             City: request.body.city,
             State: request.body.state,
-            SBP: request.body.SBP,
-            DBP: request.body.DBP,
             Height: request.body.height,
             Weight: request.body.weight,
+            Smoking: request.body.smoking,
+            Alcohol: request.body.alcohol,
+            Diabetes: request.body.diabetes,
+            ChronicKidneyDisease: request.body.chronickidneydisease,
+            Epilepsy: request.body.epilepsy,
+            Cardiac: request.body.cardiac,
+            Cancer: request.body.cancer,
         }
 
         const patient = await patientService.create(patientData);
-        response.status(200).json({registered: true, message: "patient is registered true", data: patient})
+        response.status(200).json({registered: true, message: "patient is registered successfully"})
 
 
     } catch (error) {
         console.log(error);
+        response.status(500).json({registered: false, message: "server error"});
     }
 }

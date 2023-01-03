@@ -63,4 +63,7 @@ export const Enterprise = sequelize.define("enterprise", {
         type: DataTypes.STRING,
         allowNull: true,
     },
+    LogoKey: {
+        type: DataTypes.STRING,
+    }
 })

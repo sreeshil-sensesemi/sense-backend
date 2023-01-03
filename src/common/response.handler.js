@@ -30,7 +30,7 @@ export const handleFailure = (request, response, message, httpErrorCode, error) 
         APIVersion: process.env.API_VERSION,
     }
 
-    return response.status(errorCode).send(responseObject);
+     return response.status(errorCode).send(responseObject);
 
 }
 
