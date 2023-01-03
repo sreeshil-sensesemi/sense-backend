@@ -36,3 +36,17 @@ export const create = async (patientData) => {
         console.log(error);
     }
 }
+
+
+// get all patients by enterprise id
+export const getAllPatientsByEnterpriseID = async (enterpriseID) => {
+    try {
+
+        const patients = await Patient.findAll({ where : { SenseHospitalID: enterpriseID }});
+        return patients;
+        
+    } catch (error) {
+        console.log(error);
+        return "not found error"
+    }
+}

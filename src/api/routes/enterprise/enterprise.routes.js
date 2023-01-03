@@ -18,6 +18,9 @@ export const register = async (app) => {
     router.put('/:enterpriseID', controller.updateByEnterpriseID);
     router.delete('/:enterpriseID', controller.deleteByEnterpriseID);
 
+    router.get('/doctors/:enterpriseID', controller.getDoctors);
+    router.get('/patients/:enterpriseID', controller.getPatients);
+
 
     router.get('/test', async (req, res) => res.send("success api get"))
 

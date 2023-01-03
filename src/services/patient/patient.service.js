@@ -21,3 +21,9 @@ export const  create = async (patientData) => {
     const patient = await patientRepo.create(patientData);
     return patient;
 }
+
+// get all patients by enterprise id
+export const getAllPatientsByEnterpriseID = async (enterpriseID) => {
+    const patients = await patientRepo.getAllPatientsByEnterpriseID(enterpriseID);
+    return patients;
+}

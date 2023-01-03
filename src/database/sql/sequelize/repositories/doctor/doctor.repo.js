@@ -49,3 +49,16 @@ export const deleteByDoctorID = async (doctorID, senseHospitalID) => {
         console.log(error);
     }
 }
+
+//get doctors
+export const getAllDoctorsByEnterpriseID = async (enterpriseID) => {
+    try {
+
+        const doctors = await Doctor.findAll({ where: {SenseHospitalID : enterpriseID }})
+        return doctors;
+        
+    } catch (error) {
+        console.log(error);
+        return "not found"
+    }
+}

@@ -17,6 +17,7 @@ export const register = async (app) => {
     //router.delete('/:doctorID', controller.deleteByDoctorID);
     
     
+    
     router.get('/test', async (req, res) => res.send("success Doctors api get"))
    
 

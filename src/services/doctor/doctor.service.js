@@ -26,3 +26,10 @@ export const updateByDoctorID = async (doctorID, data) => {
     const doctor = await doctorRepo.updateByDoctorID(doctorID, data);
     return doctor;
 }
+
+//get all doctors by enterprise id
+export const getAllDoctorsByEnterpriseID = async (enterpriseID) => {
+    
+    const doctors = await doctorRepo.getAllDoctorsByEnterpriseID(enterpriseID);
+    return doctors;
+}

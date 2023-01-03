@@ -1,4 +1,6 @@
 import * as enterpriseService from '../../../services/enterprise/enterprise.service.js';
+import * as doctorService from '../../../services/doctor/doctor.service.js'
+import * as patientService from '../../../services/patient/patient.service.js'
 import { registerValidator, verifyOtpValidator, loginValidator } from '../../validators/enterprise/enterprise.validator.js';
 import { handleFailure, handleSuccess, handleError } from '../../../common/response.handler.js'
 import { sendOtp, verifyOtp } from '../../helpers/otp.config.js';
@@ -42,7 +44,7 @@ export const loginWithMobile = async (request, response) => {
 export const otpVerify = async (request, response) => {
     try {
         const validator = verifyOtpValidator(request.body);
-
+    
         //return if error occured
         if (validator.error) {
             const error = {
@@ -118,7 +120,6 @@ export const create = async (request, response) => {
             city: City,
             address: Address,
             pin: Pin,
-            otp: OTP
 
         } = request.body;
 
@@ -238,7 +239,33 @@ export const deleteByEnterpriseID = async (request, response) => {
 }
 
 
+// get all doctors by enterprise ID
+export const getDoctors = async (request, response) => {
+    try {
+        const id = request.params.enterpriseID;
 
+        const doctors = await doctorService.getAllDoctorsByEnterpriseID(id);
+        response.status(200).json({doctors});
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// get all patients by enterprise ID
+export const getPatients = async (request, response) => {
+    try {
+        const id = request.params.enterpriseID;
+
+        const patients  = await patientService.getAllPatientsByEnterpriseID(id);
+        response.status(200).json({patients});
+
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
