@@ -24,11 +24,11 @@ export const create = async (request, response) => {
         }
         const manualData = await manualVitalService.create(manualVitals);
        
-        response.status(200).json({message: "manual entry created successfully"})
+        response.status(200).json({success: true, message: "manual entry created successfully"})
         
     } catch (error) {
         console.log(error);
-        response.status(500).json({message: "server error"})
+        response.status(500).json({success: false, message: "server error"})
     }
 }
 

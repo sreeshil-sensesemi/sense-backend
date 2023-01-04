@@ -16,7 +16,7 @@ export const create = async (manualVitals) => {
 // get manual vitals by patient id
 export const getManualVitalsById = async (sensepatientID) => {
     try {
-        const manualVitals = await ManualVital.findOne({ where: { SensePatientID: sensepatientID } });
+        const manualVitals = await ManualVital.findAll({ where: { SensePatientID: sensepatientID } });
         return manualVitals;
     } catch (error) {
         console.log(error);
