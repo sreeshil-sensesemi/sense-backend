@@ -4,6 +4,7 @@ import { handleFailure } from '../../../common/response.handler.js';
 import { generatePatientID } from '../../helpers/patient.helper.js';
 
 
+
 //create patient
 export const create = async (request, response) => {
     try {
@@ -50,5 +51,25 @@ export const create = async (request, response) => {
     } catch (error) {
         console.log(error);
         response.status(500).json({registered: false, message: "server error"});
+    }
+}
+
+
+
+// search patient
+export const searchPatient = async (request, response) => {
+    try {
+       
+        const searchQuery = request.query.mobile;
+
+        const patient = await patientService.searchPatient(searchQuery);
+
+        if (!patient) response.status(200).json({error: true, message: "patient not found"})
+        
+        response.status(200).json({error: false, data: patient})
+
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({error: true, message: "server error"});
     }
 }

@@ -50,3 +50,13 @@ export const getAllPatientsByEnterpriseID = async (enterpriseID) => {
         return "not found error"
     }
 }
+
+
+export const searchPatient = async (searchQuery) => {
+    try {
+        const patient = await Patient.findOne({ where: { MobileNumber: searchQuery}});
+        return patient;
+    } catch (error) {
+        console.log(error);
+    }
+}

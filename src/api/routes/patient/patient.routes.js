@@ -1,5 +1,5 @@
 import express from 'express'
-import { create } from '../../controllers/patient/patient.controller.js';
+import * as controller from '../../controllers/patient/patient.controller.js';
 
 
 export const register = async (app) => {
@@ -8,7 +8,9 @@ export const register = async (app) => {
     const router = express.Router();
 
 
-    router.post('/', create);
+    router.post('/', controller.create);
+
+    router.get('/search', controller.searchPatient);
     
    // router.get('/test', async (req, res) => res.send("success Patient api get"))
    

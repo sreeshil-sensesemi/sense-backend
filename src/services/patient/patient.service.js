@@ -27,3 +27,9 @@ export const getAllPatientsByEnterpriseID = async (enterpriseID) => {
     const patients = await patientRepo.getAllPatientsByEnterpriseID(enterpriseID);
     return patients;
 }
+
+//search patient 
+export const searchPatient = async (searchQuery) => {
+    const patient = await patientRepo.searchPatient(searchQuery);
+    return patient;
+}

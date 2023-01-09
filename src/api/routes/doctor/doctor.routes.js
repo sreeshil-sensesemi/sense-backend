@@ -16,7 +16,7 @@ export const register = async (app) => {
     router.put('/:doctorID', controller.updateByDoctorID);
     //router.delete('/:doctorID', controller.deleteByDoctorID);
     
-    router.post('/search', controller.searchDoctor);
+   // router.post('/search', controller.searchDoctor);
     
     
     router.get('/test', async (req, res) => res.send("success Doctors api get"))
