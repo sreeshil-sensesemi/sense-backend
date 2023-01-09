@@ -108,17 +108,17 @@ export const create = async (request, response) => {
         const {
             hospitalname: HospitalName,
             mobilenumber: MobileNumber,
-            hospitaltype: HospitalType,
-            governmentundertaking: GovernmentUndertaking,
-            state: State,
-            city: City,
+            //hospitaltype: HospitalType,
+            //governmentundertaking: GovernmentUndertaking,
+            //state: State,
+            //city: City,
             address: Address,
-            pin: Pin,
+           // pin: Pin,
 
         } = request.body;
 
-        const Email = request.body.email ? request.body.email : null;
-        const Website = request.body.website ? request.body.website : null;
+        //const Email = request.body.email ? request.body.email : null;
+        //const Website = request.body.website ? request.body.website : null;
 
         let keyString = '';
         let logo = '';
@@ -133,7 +133,7 @@ export const create = async (request, response) => {
 
            // await storageConfig(buffer, keyString);
             let uploads = await uploadObject(buffer, keyString);
-            logo = uploads.Location;
+            logo = uploads.Location; 
 
         }
 
@@ -145,14 +145,14 @@ export const create = async (request, response) => {
             SenseHospitalID: ID,
             HospitalName,
             MobileNumber,
-            Email,
-            HospitalType,
-            GovernmentUndertaking,
-            State,
-            City,
+            //Email,
+            //HospitalType,
+            //GovernmentUndertaking,
+            //State,
+            //City,
             Address,
-            Pin,
-            Website,
+            //Pin,
+           // Website,
             Logo: logo,
             LogoKey: keyString
         }

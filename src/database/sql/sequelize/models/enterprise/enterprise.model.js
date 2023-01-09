@@ -3,11 +3,11 @@ import { sequelize } from "../../database.config.js";
 
 
 export const Enterprise = sequelize.define("enterprise", {
-    HospitalID: {
-        type: DataTypes.STRING,
-       // unique: true,
-        allowNull: true,
-    },
+    // HospitalID: {
+    //     type: DataTypes.STRING,
+    //    // unique: true,
+    //     allowNull: true,
+    // },
     SenseHospitalID: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -30,21 +30,21 @@ export const Enterprise = sequelize.define("enterprise", {
     },
     HospitalType: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
 
     },
     GovernmentUndertaking: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
 
     },
     State: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     City: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
 
     },
     Address: {
@@ -53,7 +53,7 @@ export const Enterprise = sequelize.define("enterprise", {
     },
     Pin: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     Website: {
         type: DataTypes.STRING,

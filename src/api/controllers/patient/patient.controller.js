@@ -64,7 +64,7 @@ export const searchPatient = async (request, response) => {
 
         const patient = await patientService.searchPatient(searchQuery);
 
-        if (!patient) response.status(200).json({error: true, message: "patient not found"})
+        if (!patient) return response.status(200).json({error: true, message: "patient not found"})
         
         response.status(200).json({error: false, data: patient})
 
