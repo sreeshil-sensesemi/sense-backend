@@ -18,11 +18,7 @@ export const Patient = sequelize.define("patient", {
         allowNull: false,
         //unique: true
     },
-    FirstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    LastName: {
+    Name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -40,10 +36,6 @@ export const Patient = sequelize.define("patient", {
         //unique: true
     },
     City: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    State: {
         type: DataTypes.STRING,
         allowNull: false,
     },

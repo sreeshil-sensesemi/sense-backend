@@ -24,11 +24,7 @@ export const Doctor = sequelize.define("doctor", {
         allowNull: false,
        // unique: true
     },
-    FirstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    LastName: {
+    Name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -41,10 +37,10 @@ export const Doctor = sequelize.define("doctor", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    StateMedicalCouncil: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+    // StateMedicalCouncil: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    // },
     PractisingSince: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -66,10 +62,6 @@ export const Doctor = sequelize.define("doctor", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    State: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
 })
 
 

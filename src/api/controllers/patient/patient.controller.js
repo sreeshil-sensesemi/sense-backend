@@ -21,18 +21,16 @@ export const create = async (request, response) => {
 
         //generate patient ID 
         const patientID = await generatePatientID(request.body.sensehospitalID, request.body.sensedoctorID)
-        
+
         const patientData = {
             SensePatientID: patientID,
             SenseDoctorID: request.body.sensedoctorID,
             SenseHospitalID: request.body.sensehospitalID,
-            FirstName: request.body.firstname,
-            LastName: request.body.lastname,
+            Name: request.body.name, 
             Age: request.body.age,
             Gender: request.body.gender,
             MobileNumber: request.body.mobile,
             City: request.body.city,
-            State: request.body.state,
             Height: request.body.height,
             Weight: request.body.weight,
             Smoking: request.body.smoking,
@@ -45,12 +43,12 @@ export const create = async (request, response) => {
         }
 
         const patient = await patientService.create(patientData);
-        response.status(200).json({registered: true, message: "patient is registered successfully"})
+        response.status(200).json({ registered: true, message: "patient is registered successfully" })
 
 
     } catch (error) {
         console.log(error);
-        response.status(500).json({registered: false, message: "server error"});
+        response.status(500).json({ registered: false, message: "server error" });
     }
 }
 
@@ -59,17 +57,17 @@ export const create = async (request, response) => {
 // search patient
 export const searchPatient = async (request, response) => {
     try {
-       
+
         const searchQuery = request.query.mobile;
 
         const patient = await patientService.searchPatient(searchQuery);
 
-        if (!patient) return response.status(200).json({error: true, message: "patient not found"})
-        
-        response.status(200).json({error: false, data: patient})
+        if (!patient) return response.status(200).json({ error: true, data: '' })
+
+        response.status(200).json({ error: false, data: patient })
 
     } catch (error) {
         console.log(error);
-        response.status(500).json({error: true, message: "server error"});
+        response.status(500).json({ error: true, message: "server error" });
     }
 }

@@ -7,17 +7,16 @@ export const registerValidator = (data) => {
     const registerSchema = Joi.object({
         sensehospitalID: Joi.string().required().length(5).label("Sense Hospital ID"),
         registrationno: Joi.string().required().label("Registration No"),
-        firstname: Joi.string().required().label("First Name"),
-        lastname: Joi.string().required().label("Last Name"),
+        name: Joi.string().required().label("Name"),
         specialization: Joi.string().required().label("Specialization"),
-        statemedicalcouncil: Joi.string().required().label("State Medical Council"),
+        //statemedicalcouncil: Joi.string().required().label("State Medical Council"),
         //practicingsince: Joi.number().integer().required().min().max().label("Practicing Since"),
-        practisingsince: Joi.string().required().label("Practicing Since"),
+        practisingsince: Joi.string().required().label("Practising Since"),
         age: Joi.string().required().label("Age"),
         gender: Joi.string().required().label("Gender"),
         mobile: Joi.string().required().length(10).label("Mobile Number"),
         city: Joi.string().required().label("City"),
-        state: Joi.string().required().label("State")
+        //state: Joi.string().required().label("State")
     });
 
     return registerSchema.validate(data);

@@ -28,16 +28,15 @@ export const create = async (request, response) => {
             SenseDoctorID: doctorID,
             SenseHospitalID: request.body.sensehospitalID,
             RegistrationNo: request.body.registrationno,
-            FirstName: request.body.firstname,
-            LastName: request.body.lastname,
+            Name: request.body.name, 
             Specialization: request.body.specialization,
-            StateMedicalCouncil: request.body.statemedicalcouncil,
+            //StateMedicalCouncil: request.body.statemedicalcouncil,
             PractisingSince: request.body.practisingsince,
             Age: request.body.age,
             Gender: request.body.gender,
             MobileNumber: request.body.mobile,
             City: request.body.city,
-            State: request.body.state,
+            // State: request.body.state,
         }
 
 

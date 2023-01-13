@@ -6,12 +6,10 @@ export const registerValidator = (data) => {
     const registerSchema = Joi.object({
         sensedoctorID: Joi.string().required().length(3).label("Doctor ID"),
         sensehospitalID: Joi.string().required().length(5).label("Hospital ID"),
-        firstname: Joi.string().required().label("First Name"),
-        lastname: Joi.string().required().label("Last Name"),
+        name: Joi.string().required().label("Name"),
         age: Joi.string().required().label("Age"),
         mobile: Joi.string().required().length(10).label("Mobile Number"),
         city: Joi.string().required().label("City"),
-        state: Joi.string().required().label("State"),
         height: Joi.string().required().label("Height"),
         weight: Joi.string().required().label("Weight"),
         gender: Joi.string().required().label("Gender"),
