@@ -3,6 +3,7 @@ import { register as registerEnterpriseRoutes } from './enterprise/enterprise.ro
 import { register as registerDoctorRoutes } from './doctor/doctor.routes.js';
 import { register as registerPatientRoutes } from './patient/patient.routes.js';
 import { register as registerManualVitalRoutes } from './vital/manual.vital.routes.js';
+import { register as registerDeviceVitalRoutes } from './vital/device.vital.routes.js'
 
 
 
@@ -23,6 +24,7 @@ export const routerInit = async (app) => {
             registerDoctorRoutes(app);
             registerPatientRoutes(app);
             registerManualVitalRoutes(app);
+            registerDeviceVitalRoutes(app);
 
             //Handling the wrong route
             app.all('*', (req, res) => {

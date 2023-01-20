@@ -9,6 +9,8 @@ export const register = (app) => {
 
     router.post('/', controller.create);
 
+
+    
     // router.post('/bp', createBpRecord)
     // router.post('/bg', createBgRecord);
     // router.post('/spo2', createSpo2Record)
