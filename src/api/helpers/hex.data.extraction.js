@@ -233,7 +233,7 @@ export const hexExtraction = (hexDataHeader, context) => {
         //Calculated data
         extractedData.calculatedData = bpCalculatedData(hexDataHeader);
 
-    } else if (context === 'ECG' || context === 'BG' || context === 'SPO2') {
+    } else if (context === 'ECG' || context === 'BG' || context === 'SPO2' || context === 'ECG12') {
 
         //Calculated data
         extractedData.calculatedData = calculatedData(hexDataHeader);
