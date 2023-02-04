@@ -11,10 +11,10 @@ export const create = async (request, response) => {
 
         let context = request.body.context;
         let headerData = request.body.data.slice(0, 54);
-        console.log(headerData);
+       
 
         const extractedData = hexExtraction(headerData, context);
-        console.log(extractedData);
+       
 
         response.status(200).json({extractedData: extractedData, hexData: request.body.data});
         

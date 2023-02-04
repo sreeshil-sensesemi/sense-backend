@@ -4,7 +4,7 @@ import { register as registerDoctorRoutes } from './doctor/doctor.routes.js';
 import { register as registerPatientRoutes } from './patient/patient.routes.js';
 import { register as registerManualVitalRoutes } from './vital/manual.vital.routes.js';
 import { register as registerDeviceVitalRoutes } from './vital/device.vital.routes.js'
-
+import { register as registerWebUserRoutes } from './webUser/web.user.routes.js'
 
 
 export const routerInit = async (app) => {
@@ -15,7 +15,7 @@ export const routerInit = async (app) => {
             //Handling the base route
             app.get('/api/v1/', (req, res) => {
                 res.send({
-                    message: `SenseService API [Version ${process.env.API_VERSION}]`,
+                    message: `SenseService-RPC API [Version ${process.env.API_VERSION}]`,
                 });
             });
 
@@ -25,7 +25,9 @@ export const routerInit = async (app) => {
             registerPatientRoutes(app);
             registerManualVitalRoutes(app);
             registerDeviceVitalRoutes(app);
+            registerWebUserRoutes(app)
 
+            
             //Handling the wrong route
             app.all('*', (req, res) => {
                 res.status(404).json({
