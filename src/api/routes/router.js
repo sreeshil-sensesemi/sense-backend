@@ -5,7 +5,7 @@ import { register as registerPatientRoutes } from './patient/patient.routes.js';
 import { register as registerManualVitalRoutes } from './vital/manual.vital.routes.js';
 import { register as registerDeviceVitalRoutes } from './vital/device.vital.routes.js'
 import { register as registerWebUserRoutes } from './webUser/web.user.routes.js'
-
+import { register as registerECGRoutes } from './ecg12lead/ecg12lead.router.js'
 
 export const routerInit = async (app) => {
     return new Promise((resolve, reject) => {
@@ -25,9 +25,10 @@ export const routerInit = async (app) => {
             registerPatientRoutes(app);
             registerManualVitalRoutes(app);
             registerDeviceVitalRoutes(app);
-            registerWebUserRoutes(app)
+            registerWebUserRoutes(app);
+            registerECGRoutes(app);
 
-            
+
             //Handling the wrong route
             app.all('*', (req, res) => {
                 res.status(404).json({
@@ -48,4 +49,3 @@ export const routerInit = async (app) => {
 }
 
 
- 

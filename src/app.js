@@ -58,7 +58,7 @@ export const start = async () => {
         await setupMiddlewares();
 
         // initialize database
-        await initialize();
+       // await initialize();
 
         // initialize router
         await routerInit(app);
