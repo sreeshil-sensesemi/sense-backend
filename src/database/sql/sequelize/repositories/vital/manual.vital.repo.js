@@ -20,6 +20,7 @@ export const getManualVitalsById = async (sensepatientID) => {
         return manualVitals;
     } catch (error) {
         console.log(error);
+        return
     }
 }
 

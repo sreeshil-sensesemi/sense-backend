@@ -13,6 +13,7 @@ export const create = async (request, response) => {
         //let raw = data.slice(54, 19254);  
 
         const calData = hexExtraction(header, context);
+        console.log(calData);
 
         if (context == 'ECG') {
             let raw = data.slice(54, 4800);
@@ -49,11 +50,9 @@ async function append(raw) {
 
         }
 
-
     }
 
     // console.log(JSON.stringify(res));
-    console.log(res instanceof Array);
     res.forEach(function (element) {
         console.log(element);
 

@@ -52,11 +52,24 @@ export const getAllPatientsByEnterpriseID = async (enterpriseID) => {
 }
 
 
+//search patient
 export const searchPatient = async (searchQuery) => {
     try {
         const patient = await Patient.findOne({ where: { MobileNumber: searchQuery}});
         return patient;
     } catch (error) {
         console.log(error);
+    }
+}
+
+//get patient by mobile number
+export const getByMobileNumber = async (mobilenumber) => {
+    try {
+        const patient = await Patient.findOne({ where: { MobileNumber: mobilenumber }});
+        return patient;
+        
+    } catch (error) {
+        console.log(error);
+        return 
     }
 }

@@ -51,13 +51,27 @@ export const create = async (request, response) => {
 }
 
 
+// get all doctors with enterpriseID
+export const getAllDoctorsByEnterpriseID = async (request, response) => {
+    try {
+
+        const enterpriseID = request.params.id;
+
+        const doctors = await doctorService.getAllDoctorsByEnterpriseID(enterpriseID);
+        response.status(200).send(doctors);
+        
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({ message: "server error"})
+    }
+}
 // get doctor by doctor id
 export const getByDoctorID = async (request, response) => {
     try {
 
-        const doctorID = request.params.doctorID;
+        const doctorID = request.params.id;
 
-        const doctor = await doctorService.getByDoctorID(doctorID);
+        const doctor = await doctorService.getDoctor(doctorID);
         response.status(200).send(doctor);
         
     } catch (error) {

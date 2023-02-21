@@ -7,9 +7,9 @@ import * as doctorRepo from '../../database/sql/sequelize/repositories/doctor/do
 
 
 // get doctor by doctor ID and enterprise ID
-export const getByDoctorID = async (doctorID, senseHospitalID) => {
+export const getDoctor = async (doctorID, senseHospitalID) => {
 
-    const doctor = await doctorRepo.getByDoctorID(doctorID, senseHospitalID);
+    const doctor = await doctorRepo.getDoctor(doctorID, senseHospitalID);
     return doctor;
 }
 

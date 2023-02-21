@@ -9,9 +9,9 @@ export const register = async (app) => {
 
 
     router.post('/', controller.create);
-    router.get('/:sensepatientid',  controller.getManualVitalsByPatientId);
-    router.put('/:sensepatientid', controller.updateManualVitalByPatientId);
-    router.delete('/:sensepatientid', controller.deleteManualVitalByPatientId);
+    router.get('/:id',  controller.getManualVitalsByPatientId);
+    router.put('/:id', controller.updateManualVitalByPatientId);
+    router.delete('/:id', controller.deleteManualVitalByPatientId);
    
 
     app.use('/api/v1/manual-vitals', router);

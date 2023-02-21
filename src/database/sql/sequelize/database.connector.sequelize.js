@@ -38,15 +38,15 @@ export const initialize = async () => {
          db.sequelize = sequelize;
 
         // init models and add them to the exported db object
-        Enterprise.sync({alter: true });
-        Doctor.sync({alter: true });
-        Patient.sync({alter: true });
-        ManualVital.sync({alter: true });
-        WebUser.sync({alter: true});
+        Enterprise.sync();
+        Doctor.sync();
+        Patient.sync();
+        ManualVital.sync();
+        WebUser.sync();
 
 
         // sync all models with database
-        await sequelize.sync({alter: true })
+        await sequelize.sync()
             .then(() => {
                 console.log('re-sync done');
             })

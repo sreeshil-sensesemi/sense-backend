@@ -33,3 +33,9 @@ export const searchPatient = async (searchQuery) => {
     const patient = await patientRepo.searchPatient(searchQuery);
     return patient;
 }
+
+//get patient by mobile number
+export const getByMobileNumber = async (mobilenumber) => {
+    const patient = await patientRepo.getByMobileNumber(mobilenumber);
+    return patient;
+}

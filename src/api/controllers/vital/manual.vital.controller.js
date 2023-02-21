@@ -23,6 +23,8 @@ export const create = async (request, response) => {
             Weight: request.body.weight,
         }
         const manualData = await manualVitalService.create(manualVitals);
+
+        if (!manualData) return response.status(200).json({success: false, message: "not created error"})
        
         response.status(200).json({success: true, message: "manual entry created successfully"})
         
@@ -36,9 +38,11 @@ export const create = async (request, response) => {
 //get manual vitals by patient id
 export const getManualVitalsByPatientId = async (request, response) => {
     try {
-        const sensepatientID = request.params.sensepatientid;
+        const sensepatientID = request.params.id;
         
         const manualVitals = await manualVitalService.getManualVitalsById(sensepatientID);
+
+        if (manualVitals.length == 0) return response.status(200).json({message: "data found"})
 
         response.status(200).json({data: manualVitals})
         
@@ -61,7 +65,7 @@ export const updateManualVitalByPatientId = async (request, response) => {
 // delete manual vital by patient id
 export const deleteManualVitalByPatientId = async (request, response) => {
     try {
-        const sensepatientID = request.params.sensepatientid;
+        const sensepatientID = request.params.id;
 
         await manualVitalService.deleteManualVitalByPatientId(sensepatientID);
 

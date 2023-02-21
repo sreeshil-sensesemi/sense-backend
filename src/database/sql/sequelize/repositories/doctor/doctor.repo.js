@@ -6,14 +6,16 @@ import { Doctor } from "../../models/doctor/doctor.model.js";
 
 
 // get doctor 
-export const getByDoctorID = async (doctorID, senseHospitalID) => {
+export const getDoctor = async (doctorID, senseHospitalID) => {
     try {
       
-        const doctor = await Doctor.findOne({ where: { DoctorID: doctorID, SenseHospitalID: senseHospitalID } });
+        const doctor = await Doctor.findOne({ where: { SenseDoctorID: doctorID, SenseHospitalID: senseHospitalID } });
         return doctor;
         //return await PatientMapper.toDetailsDto(patient);
+
     } catch (error) {
         console.log(error);
+        return
     }
 }
 
@@ -61,7 +63,7 @@ export const getAllDoctorsByEnterpriseID = async (enterpriseID) => {
         
     } catch (error) {
         console.log(error);
-        return "not found"
+        return 
     }
 }
 

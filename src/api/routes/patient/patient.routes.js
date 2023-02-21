@@ -12,7 +12,14 @@ export const register = async (app) => {
 
     router.get('/search', controller.searchPatient);
     
-   // router.get('/test', async (req, res) => res.send("success Patient api get"))
+    
+    //patient app
+    router.post('/login', controller.patientLoginWithMobileNumber);
+    router.post('/verify-otp', controller.otpVerify);
+
+    // get doctors in patientapp
+    router.get('/doctor/:id', controller.getPatientDoctor);
+    router.get('/all-doctors/:id', controller.getAllDoctors); 
    
 
     app.use('/api/v1/patients', router);
