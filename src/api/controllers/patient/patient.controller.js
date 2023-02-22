@@ -80,9 +80,9 @@ export const searchPatient = async (request, response) => {
 // patient login in patient app
 export const patientLoginWithMobileNumber = async (request, response) => {
     try {
-
+        
         const validator = loginValidator(request.body);
-
+    
         //return if error occured
         if (validator.error) {
             const error = {
@@ -110,6 +110,8 @@ export const patientLoginWithMobileNumber = async (request, response) => {
 // otp verify
 export const otpVerify = async (request, response) => {
     try {
+       
+
         const validator = verifyOtpValidator(request.body);
 
         //return if error occured
@@ -122,7 +124,7 @@ export const otpVerify = async (request, response) => {
         }
 
         const { otp, mobilenumber } = request.body;
-
+        
 
         // twilio otp verify
         const verifyOtpRes = await verifyOtp(otp, mobilenumber)
@@ -135,6 +137,7 @@ export const otpVerify = async (request, response) => {
 
 
             const patient = await patientService.getByMobileNumber(mobilenumber);
+            console.log(patient);
 
             if (patient) return response.status(200).json({ verified: true, isExist: true, error: false, data: patient, message: "OTP verification success, Logged In" })
 
@@ -190,7 +193,8 @@ export const getAllDoctors = async (request, response) => {
 
         if (doctors.length == 0) return response.status(200).json({message: 'doctors not found'})
 
-        response.status(200).json({data: doctors});
+        //response.status(200).json({data: doctors});
+        response.status(200).send(doctors);
 
         
     } catch (error) {

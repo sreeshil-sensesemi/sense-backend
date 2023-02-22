@@ -10,7 +10,7 @@ export const register = async (app) => {
 
     router.post('/', controller.create);
 
-    router.get('/search', controller.searchPatient);
+    //router.get('/search', controller.searchPatient);
     
     
     //patient app
@@ -20,7 +20,7 @@ export const register = async (app) => {
     // get doctors in patientapp
     router.get('/doctor/:id', controller.getPatientDoctor);
     router.get('/all-doctors/:id', controller.getAllDoctors); 
-   
+    
 
     app.use('/api/v1/patients', router);
 
