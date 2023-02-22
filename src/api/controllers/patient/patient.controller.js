@@ -164,13 +164,13 @@ export const getPatientDoctor = async (request, response) => {
 
         const hospitalid = patientid.slice(0,5);
         const doctorid = patientid.slice(5,8);
-       
 
         const doctor = await doctorService.getDoctor(doctorid, hospitalid);
 
         if (!doctor) return response.status(200).json({message: 'doctor not found'})
 
-        response.status(200).json({data: doctor})
+        //response.status(200).json({data: doctor})
+        response.status(200).send([doctor]);
 
         
     } catch (error) {

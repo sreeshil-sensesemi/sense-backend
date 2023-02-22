@@ -9,9 +9,14 @@ export const register = async (app) => {
 
 
     router.post('/', controller.create);
-    router.get('/:id',  controller.getManualVitalsByPatientId);
+    router.get('/',  controller.getManualVitalsByPatientId);
+    
     router.put('/:id', controller.updateManualVitalByPatientId);
     router.delete('/:id', controller.deleteManualVitalByPatientId);
+
+
+    // //bp
+    // router.get('/', controller.get)
    
 
     app.use('/api/v1/manual-vitals', router);

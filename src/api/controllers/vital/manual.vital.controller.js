@@ -38,13 +38,18 @@ export const create = async (request, response) => {
 //get manual vitals by patient id
 export const getManualVitalsByPatientId = async (request, response) => {
     try {
-        const sensepatientID = request.params.id;
+       // const sensepatientID = request.params.id;
+       const context = request.query.context;
+       const patientid = request.query.id;
+
+
         
-        const manualVitals = await manualVitalService.getManualVitalsById(sensepatientID);
+        const manualVitals = await manualVitalService.getManualVitalsById(context, patientid);
 
         if (manualVitals.length == 0) return response.status(200).json({message: "data found"})
 
-        response.status(200).json({data: manualVitals})
+        //response.status(200).json({data: manualVitals})
+        response.status(200).send(manualVitals)
         
     } catch (error) {
         console.log(error);
@@ -71,5 +76,15 @@ export const deleteManualVitalByPatientId = async (request, response) => {
 
     } catch (error) {
         
+    }
+}
+
+
+//get bp data
+export const getBP = async (request, response) => {
+    try {
+        console.log(request.query);
+    } catch (error) {
+        console.log(error);
     }
 }

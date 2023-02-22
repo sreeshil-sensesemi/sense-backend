@@ -11,9 +11,9 @@ export const create = async (manualVitals) => {
 }
 
 
-export const getManualVitalsById = async (sensepatientID) => {
+export const getManualVitalsById = async (context,patientid) => {
     
-    const manualVitals = await manualVitalRepo.getManualVitalsById(sensepatientID);
+    const manualVitals = await manualVitalRepo.getManualVitalsById(context, patientid);
     return manualVitals;
 }
 

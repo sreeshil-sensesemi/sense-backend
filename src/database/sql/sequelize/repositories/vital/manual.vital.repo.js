@@ -14,30 +14,62 @@ export const create = async (manualVitals) => {
 
 
 // get manual vitals by patient id
-export const getManualVitalsById = async (sensepatientID) => {
+export const getManualVitalsById = async (context, patientid) => {
     try {
-        const manualVitals = await ManualVital.findAll({ where: { SensePatientID: sensepatientID } });
-        return manualVitals;
+
+
+        switch (context) {
+
+            case 'BP':
+
+                const bpVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['SystolicBP', 'DiastolicBP', 'createdAt'] })
+                return bpVitals;
+
+            case 'ECG':
+
+                const ecgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['ECG', 'createdAt'] });
+                return ecgVitals;
+
+            case 'BG':
+
+                const bgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['FastingBloodSugar', 'PostPrandialBG', 'RandomBloodSugar', 'createdAt'] });
+                return bgVitals;
+
+            case 'SPO2':
+
+                const bloodOxygenVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['BloodOxygen', 'createdAt'] });
+                return bloodOxygenVitals;
+
+            case 'TEMP':
+
+                const tempVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['BodyTemperature', 'createdAt'] });
+                return tempVitals;
+
+            default:
+                return []
+
+        }
+
     } catch (error) {
         console.log(error);
-        return
+        return []
     }
 }
 
 // upadte manual vitals by patient id
 export const updateManualVitalByPatientId = async (sensepatientID, data) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 // delete manual vitals by patient id
 export const deleteManualVitalByPatientId = async (sensepatientID) => {
     try {
-        await ManualVital.destroy({ where: { SensePatientID: sensepatientID }});
-        
+        await ManualVital.destroy({ where: { SensePatientID: sensepatientID } });
+
     } catch (error) {
-        
+
     }
 }
