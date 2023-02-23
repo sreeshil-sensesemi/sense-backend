@@ -38,7 +38,7 @@ export const create = async (request, response) => {
 //get manual vitals by patient id
 export const getManualVitalsByPatientId = async (request, response) => {
     try {
-       // const sensepatientID = request.params.id;
+      
        const context = request.query.context;
        const patientid = request.query.id;
 
@@ -46,7 +46,7 @@ export const getManualVitalsByPatientId = async (request, response) => {
         
         const manualVitals = await manualVitalService.getManualVitalsById(context, patientid);
 
-        if (manualVitals.length == 0) return response.status(200).json({message: "data found"})
+        if (manualVitals.length == 0) return response.status(200).json({message: "data not found"})
 
         //response.status(200).json({data: manualVitals})
         response.status(200).send(manualVitals)

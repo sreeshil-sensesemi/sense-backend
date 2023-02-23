@@ -22,27 +22,27 @@ export const getManualVitalsById = async (context, patientid) => {
 
             case 'BP':
 
-                const bpVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['SystolicBP', 'DiastolicBP', 'createdAt'] })
+                const bpVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['SystolicBP', 'DiastolicBP', 'createdAt'] , order: [['createdAt', 'DESC']]})
                 return bpVitals;
 
             case 'HeartRate':
 
-                const ecgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['HeartRate', 'createdAt'] });
+                const ecgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['HeartRate', 'createdAt'], order: [['createdAt', 'DESC']] });
                 return ecgVitals;
 
             case 'BG':
 
-                const bgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['FastingBloodSugar', 'PostPrandialBG', 'RandomBloodSugar', 'createdAt'] });
+                const bgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['FastingBloodSugar', 'PostPrandialBG', 'RandomBloodSugar', 'createdAt'], order: [['createdAt', 'DESC']] });
                 return bgVitals;
 
             case 'SPO2':
 
-                const bloodOxygenVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['BloodOxygen', 'createdAt'] });
+                const bloodOxygenVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['BloodOxygen', 'createdAt'], order: [['createdAt', 'DESC']] });
                 return bloodOxygenVitals;
 
             case 'TEMP':
 
-                const tempVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['BodyTemperature', 'createdAt'] });
+                const tempVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['BodyTemperature', 'createdAt'], order: [['createdAt', 'DESC']] });
                 return tempVitals;
 
             default:
