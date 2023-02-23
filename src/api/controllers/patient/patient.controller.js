@@ -202,3 +202,16 @@ export const getAllDoctors = async (request, response) => {
         response.status(500).json({  message: "server error" })
     }
 }
+
+
+
+//test reports
+export const createReport = async (request, response) => {
+    try {
+
+        console.log(request.file)
+        
+    } catch (error) {
+        console.log(error);
+    }
+}

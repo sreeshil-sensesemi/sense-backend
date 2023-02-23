@@ -28,7 +28,7 @@ export const ManualVital = sequelize.define("manualvital", {
     BodyTemperature: {
         type: DataTypes.FLOAT,
     },
-    ECG: {
+    HeartRate: {
         type: DataTypes.INTEGER,
     },
     Height: {

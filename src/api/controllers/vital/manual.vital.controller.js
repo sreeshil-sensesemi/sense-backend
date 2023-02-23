@@ -18,7 +18,7 @@ export const create = async (request, response) => {
             RandomBloodSugar: request.body.bg.rbs,
             BloodOxygen: request.body.bloodoxygen,
             BodyTemperature: request.body.bodytemperature,
-            ECG: request.body.ecg,
+            HeartRate: request.body.heartrate,
             Height: request.body.height,
             Weight: request.body.weight,
         }

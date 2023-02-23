@@ -25,9 +25,9 @@ export const getManualVitalsById = async (context, patientid) => {
                 const bpVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['SystolicBP', 'DiastolicBP', 'createdAt'] })
                 return bpVitals;
 
-            case 'ECG':
+            case 'HeartRate':
 
-                const ecgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['ECG', 'createdAt'] });
+                const ecgVitals = await ManualVital.findAll({ where: { SensePatientID: patientid }, attributes: ['HeartRate', 'createdAt'] });
                 return ecgVitals;
 
             case 'BG':

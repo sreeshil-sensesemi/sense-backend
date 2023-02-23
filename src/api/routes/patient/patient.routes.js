@@ -1,6 +1,6 @@
 import express from 'express'
 import * as controller from '../../controllers/patient/patient.controller.js';
-
+import { upload } from '../../helpers/multer.config.js';
 
 export const register = async (app) => {
 
@@ -20,6 +20,10 @@ export const register = async (app) => {
     // get doctors in patientapp
     router.get('/doctor/:id', controller.getPatientDoctor);
     router.get('/all-doctors/:id', controller.getAllDoctors); 
+
+
+    //uploading test reports
+    router.post('/upload', upload.single('report'), controller.createReport);
     
 
     app.use('/api/v1/patients', router);
