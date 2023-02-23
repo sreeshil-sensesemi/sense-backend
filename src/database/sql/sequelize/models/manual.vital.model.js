@@ -8,33 +8,33 @@ export const ManualVital = sequelize.define("manualvital", {
         allowNull: false, 
     },
     SystolicBP: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     DiastolicBP: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     FastingBloodSugar: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     PostPrandialBG: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     RandomBloodSugar: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     BloodOxygen: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     BodyTemperature: {
         type: DataTypes.FLOAT,
     },
     HeartRate: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     Height: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
     Weight: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
     },
 })
