@@ -73,3 +73,15 @@ export const deleteManualVitalByPatientId = async (sensepatientID) => {
 
     }
 }
+
+
+//get all manual vitals of patient
+export const getAllVitals = async (sensepatientID, date) => {
+    try {
+        const manualVitals = await ManualVital.findOne({ where: { SensePatientID:sensepatientID, Date: date}, attributes: { exclude: ['createdAt', 'updatedAt'] } });
+        return manualVitals;
+    } catch (error) {
+        console.log(error);
+        return []
+    }
+}

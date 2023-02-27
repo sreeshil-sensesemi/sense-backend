@@ -28,3 +28,9 @@ export const deleteManualVitalByPatientId = async (sensepatientID) => {
     const manualVitals = await manualVitalRepo.deleteManualVitalByPatientId(sensepatientID);
     return manualVitals;
 }
+
+//get all manual vitals of patient
+export const getAllVitals = async (sensepatientID, date) => {
+    const manualvitals = await manualVitalRepo.getAllVitals(sensepatientID, date);
+    return manualvitals;
+}

@@ -5,8 +5,8 @@ import { Enterprise } from './models/enterprise/enterprise.model.js'
 import { Doctor } from './models/doctor/doctor.model.js';
 import { Patient } from './models/patient/patient.model.js';
 import { ManualVital } from './models/manual.vital.model.js';
+import { TestReport } from './models/testreport/test.report.model.js';
 import { WebUser } from '../../../api/routes/webUser/web.user.model.js';
-
 
  var db = {};
 
@@ -42,6 +42,7 @@ export const initialize = async () => {
         Doctor.sync();
         Patient.sync();
         ManualVital.sync();
+        TestReport.sync();
         WebUser.sync();
 
 

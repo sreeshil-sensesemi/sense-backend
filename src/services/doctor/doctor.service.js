@@ -47,3 +47,10 @@ export const deleteByDoctorID = async (doctorID) => {
     const res = await doctorRepo.deleteByDoctorID(doctorID);
     return res;
 }
+
+//get doctor by mobile number
+export const getByMobileNumber = async (mobilenumber) => {
+    const doctor = await doctorRepo.getByMobileNumber(mobilenumber);
+    return doctor;
+}
+

@@ -17,13 +17,13 @@ export const register = async (app) => {
     router.post('/login', controller.patientLoginWithMobileNumber);
     router.post('/verify-otp', controller.otpVerify);
 
+    
     // get doctors in patientapp
     router.get('/doctor/:id', controller.getPatientDoctor);
     router.get('/all-doctors/:id', controller.getAllDoctors); 
 
 
-    //uploading test reports
-    router.post('/upload', upload.single('report'), controller.createReport);
+
     
 
     app.use('/api/v1/patients', router);

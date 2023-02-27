@@ -12,10 +12,12 @@ export const register = async (app) => {
 
 
     router.post('/', controller.create);
+    router.post('/login', controller.loginWithMobileNumber);
+    router.post('/verify-otp', controller.otpVerify);
 
     router.get('/:id', controller.getAllDoctorsByEnterpriseID);
     //router.get('/:id', controller.getByDoctorID);
-    router.put('/:id', controller.updateByDoctorID);
+    //router.put('/:id', controller.updateByDoctorID);
     //router.delete('/:doctorID', controller.deleteByDoctorID);
 
     // router.post('/search', controller.searchDoctor);

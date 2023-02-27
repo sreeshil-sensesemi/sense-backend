@@ -21,6 +21,7 @@ export const create = async (request, response) => {
             HeartRate: request.body.heartrate,
             Height: request.body.height,
             Weight: request.body.weight,
+            Date: request.body.date
         }
         const manualData = await manualVitalService.create(manualVitals);
 
@@ -41,7 +42,6 @@ export const getManualVitalsByPatientId = async (request, response) => {
       
        const context = request.query.context;
        const patientid = request.query.id;
-
 
         
         const manualVitals = await manualVitalService.getManualVitalsById(context, patientid);
@@ -80,11 +80,22 @@ export const deleteManualVitalByPatientId = async (request, response) => {
 }
 
 
-//get bp data
-export const getBP = async (request, response) => {
+//get all manual vital of patient
+export const getAllVitals = async (request, response) => {
     try {
-        console.log(request.query);
+        const patientid = request.query.id;
+        const date = request.query.date;
+       
+
+        const manualVitals = await manualVitalService.getAllVitals(patientid,date);
+
+        if (!manualVitals) return response.status(200).json({error: true, message: "data not found"});
+
+        response.status(200).json({ error: false, data: manualVitals })
+       
     } catch (error) {
         console.log(error);
     }
 }
+
+

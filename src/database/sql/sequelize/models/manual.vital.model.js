@@ -26,7 +26,7 @@ export const ManualVital = sequelize.define("manualvital", {
         type: DataTypes.STRING,
     },
     BodyTemperature: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
     },
     HeartRate: {
         type: DataTypes.STRING,
@@ -37,4 +37,7 @@ export const ManualVital = sequelize.define("manualvital", {
     Weight: {
         type: DataTypes.STRING,
     },
+    Date: {
+        type: DataTypes.STRING,
+    }
 })

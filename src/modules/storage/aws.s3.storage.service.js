@@ -3,11 +3,18 @@
 
 import AWS from 'aws-sdk'
 
-
+//logo
 const storageBucketRegion = process.env.STORAGE_BUCKET_REGION
 const storageBucketName = process.env.STORAGE_BUCKET_NAME
 const storageBucketAccessKey = process.env.STORAGE_BUCKET_ACCESS_KEY
 const storageBucketSecretAccessKey = process.env.STORAGE_BUCKET_SECRET_ACCESS_KEY
+
+
+//report/file
+const testReportStorageBucketRegion = process.env.TEST_REPORT_STORAGE_BUCKET_REGION
+const testReportStorageBucketName = process.env.TEST_REPORT_STORAGE_BUCKET_NAME
+const testReportStorageBucketAccessKey = process.env.TEST_REPORT_STORAGE_BUCKET_ACCESS_KEY
+const testReportStorageBucketSecretAccessKey = process.env.TEST_REPORT_STORAGE_BUCKET_SECRET_ACCESS_KEY
 
 
 // const s3 = new S3Client({
@@ -17,6 +24,8 @@ const storageBucketSecretAccessKey = process.env.STORAGE_BUCKET_SECRET_ACCESS_KE
 //     },
 //     region: storageBucketRegion
 // });
+
+//logo bucket config
 const s3 = new AWS.S3({
     credentials: {
         accessKeyId: storageBucketAccessKey,
@@ -26,7 +35,17 @@ const s3 = new AWS.S3({
 });
 
 
+//test report bucket config
+const reportFilesS3 = new AWS.S3({
+    credentials: {
+        accessKeyId: testReportStorageBucketAccessKey,
+        secretAccessKey: testReportStorageBucketSecretAccessKey,
+    },
+    region: testReportStorageBucketRegion
+});
 
+
+//logo upload 
 export const uploadObject = async (buffer, key) => {
     try {
 
@@ -44,6 +63,25 @@ export const uploadObject = async (buffer, key) => {
     }
 }
 
+
+//test report/files upload
+
+export const uploadFileObject = async (buffer, key) => {
+    try {
+
+
+        const uploadedFile = await reportFilesS3.upload({
+            Bucket: testReportStorageBucketName,
+            Key: key,
+            Body: buffer,
+        }).promise()
+
+        return uploadedFile;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 

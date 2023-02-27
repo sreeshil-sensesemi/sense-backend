@@ -10,13 +10,12 @@ export const register = async (app) => {
 
     router.post('/', controller.create);
     router.get('/',  controller.getManualVitalsByPatientId);
+    router.get('/all-vitals/', controller.getAllVitals);
     
     router.put('/:id', controller.updateManualVitalByPatientId);
     router.delete('/:id', controller.deleteManualVitalByPatientId);
 
 
-    // //bp
-    // router.get('/', controller.get)
    
 
     app.use('/api/v1/manual-vitals', router);

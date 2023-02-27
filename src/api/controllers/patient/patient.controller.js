@@ -3,7 +3,7 @@ import * as doctorService from '../../../services/doctor/doctor.service.js'
 import { registerValidator } from '../../validators/patient/patient.validator.js';
 import { handleFailure } from '../../../common/response.handler.js';
 import { generatePatientID } from '../../helpers/patient.helper.js';
-import { loginValidator, verifyOtpValidator } from '../../validators/enterprise/enterprise.validator.js';
+import { loginValidator, verifyOtpValidator } from '../../validators/patient/patient.validator.js' 
 import { sendOtp, verifyOtp } from '../../helpers/otp.config.js';
 
 
@@ -204,14 +204,3 @@ export const getAllDoctors = async (request, response) => {
 }
 
 
-
-//test reports
-export const createReport = async (request, response) => {
-    try {
-
-        console.log(request.file)
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
